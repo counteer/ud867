@@ -4,6 +4,7 @@ apply plugin: 'com.google.cloud.tools.endpoints-framework-client'
 buildscript {
     repositories {
         jcenter()
+        google()
     }
     dependencies {
         classpath 'com.google.cloud.tools:endpoints-framework-gradle-plugin:1.0.2'
@@ -12,11 +13,10 @@ buildscript {
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "26.0.3"
 
     defaultConfig {
         applicationId "com.udacity.gradle.builditbigger"
-        minSdkVersion 16
+        minSdkVersion 23
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -31,6 +31,19 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    flavorDimensions "default"
+
+    productFlavors {
+        free {
+            applicationId "com.udacity.gradle.builditbigger.free"
+            dimension "default"
+        }
+        paid {
+            applicationId "com.udacity.gradle.builditbigger.paid"
+            dimension "default"
+        }
+    }
 }
 
 dependencies {
@@ -41,10 +54,15 @@ dependencies {
     implementation 'com.google.api-client:google-api-client:1.23.0'
     implementation 'com.google.http-client:google-http-client-android:1.23.0'
     implementation 'com.google.code.findbugs:jsr305:3.0.1'
+    implementation 'com.android.support:support-annotations:27.1.1'
 
-    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
 
-    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    androidTestCompile 'com.android.support.test.espresso:espresso-intents:3.0.2'
+    androidTestCompile 'junit:junit:4.12'
+    androidTestCompile 'com.android.support.test:rules:1.0.2'
+    androidTestCompile 'com.android.support.test:runner:1.0.2'
+    compile project(path: ':jokedisplayer')
+    compile project(path: ':jokeProvider')
 }
