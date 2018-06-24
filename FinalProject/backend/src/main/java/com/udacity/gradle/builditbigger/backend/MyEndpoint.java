@@ -16,9 +16,9 @@ import com.zflabs.jokeprovider.Joke;
         )
 )
 public class MyEndpoint {
-    /** A simple endpoint method that takes a name and says Hi back */
+    /** A simple endpoint method that tells a Joke*/
     @ApiMethod(name = "tellJoke")
-    public JokeContainer sayHi() {
+    public JokeContainer tellJoke() {
         JokeContainer response = new JokeContainer();
         response.setData(Joke.giveMeJoke());
         return response;

@@ -11,7 +11,10 @@ public class DisplayJokeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_joke);
-        String text = getIntent().getStringExtra(Intent.EXTRA_TEXT);
-        Toast.makeText(this, text, Toast.LENGTH_LONG).show();
+        String text;
+        if(getIntent().hasExtra(Intent.EXTRA_TEXT)) {
+            text = getIntent().getStringExtra(Intent.EXTRA_TEXT);
+            Toast.makeText(this, text, Toast.LENGTH_LONG).show();
+        }
     }
 }
