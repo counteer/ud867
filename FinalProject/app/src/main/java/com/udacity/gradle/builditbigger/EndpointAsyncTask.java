@@ -21,6 +21,7 @@ public class EndpointAsyncTask extends AsyncTask<Void, Void, String> {
     }
 
     private static MyApi myApiService = null;
+
     private Context context;
 
     @Override
@@ -58,4 +59,5 @@ public class EndpointAsyncTask extends AsyncTask<Void, Void, String> {
     public void setListener(EndpointListener listener){
         this.listener = listener;
     }
+
 }
